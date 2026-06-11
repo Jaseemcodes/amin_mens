@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { Header } from './components/Header/Header';
-import { Hero } from './components/Hero/Hero';
+import { PromoBanner } from './components/Home/PromoBanner';
+import { ShopByCollection } from './components/Home/ShopByCollection';
+import { FeaturedProduct } from './components/Home/FeaturedProduct';
+import { BestSellers } from './components/Home/BestSellers';
+import { FeatureBar } from './components/Home/FeatureBar';
 import { FilterSidebar } from './components/Filters/FilterSidebar';
-import { ProductGrid } from './components/ProductGrid/ProductGrid';
+import heroBannerImage from './assets/images/narkins_stitched_hero_banner_1781154378525.png';
 import { FAQAccordion } from './components/FAQ/FAQAccordion';
 import { Footer } from './components/Footer/Footer';
 import { CartDrawer } from './components/Cart/CartDrawer';
@@ -42,6 +46,7 @@ export default function App() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const [currentPage, setCurrentPage] = useState<'home' | 'kurta_pajama' | 'unstitched'>('home');
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-stone-50 text-neutral-900 selection:bg-neutral-900 selection:text-white relative flex flex-col font-sans">
@@ -59,50 +64,70 @@ export default function App() {
         setIsSearchActive={setIsSearchActive}
       />
 
-      {/* Main Luxury Hero Banner with Overlay */}
-      <Hero />
-
-      {/* Primary Catalog Container */}
-      <main className="flex-grow max-w-7xl w-full mx-auto px-2 sm:px-3 md:px-4 py-3 sm:py-4 md:py-10 pb-20 md:pb-10">
-        
-        {/* Dynamic Filtering Panel */}
-        <FilterSidebar
-          filters={filters}
-          isFilterOpen={isFilterOpen}
-          onToggleFilters={toggleFilterSidebar}
-          onSortChange={handleSortChange}
-          uniqueTypes={uniqueTypes}
-          uniqueColors={uniqueColors}
-          priceBounds={priceBounds}
-          onToggleType={toggleTypeFilter}
-          onToggleColor={toggleColorFilter}
-          onPriceChange={handlePriceChange}
-          onClearFilters={clearFilters}
-        />
-
-        {/* Catalog Result Description Info bar */}
-        <div className="flex items-center justify-between text-[11px] sm:text-xs text-gray-500 py-2 sm:py-2.5 md:py-3.5 border-b border-gray-150 mb-3 sm:mb-4 md:mb-6 font-medium select-none">
-          <p>
-            Showing <span className="text-black font-extrabold">{filteredProducts.length}</span> variants
-          </p>
-          {(filters.types.length > 0 || filters.colors.length > 0 || filters.searchQuery.trim().length > 0) && (
-            <button
-              onClick={clearFilters}
-              className="text-red-500 hover:text-red-700 underline font-extrabold cursor-pointer uppercase tracking-wider text-[10px] md:text-xs"
-              id="clear-active-filters-pill"
-            >
-              Reset active filters
-            </button>
-          )}
+      {currentPage === 'home' ? (
+        <div className="flex flex-col w-full bg-white pb-10">
+          <PromoBanner 
+            imageSrc={heroBannerImage}
+            title="FQ. STITCHED COLLECTION"
+            subtitle="SUMMER 2026"
+            buttonText="Explore"
+            buttonPosition="left"
+            onButtonClick={() => setCurrentPage('kurta_pajama')}
+          />
+          <PromoBanner 
+            imageSrc="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=1600&auto=format&fit=crop"
+            title="LUXE SERIES"
+            subtitle="MAKE A STATEMENT"
+            buttonText="Explore"
+            buttonPosition="left"
+            brightness="brightness-75"
+          />
+          <PromoBanner 
+            imageSrc="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1600&auto=format&fit=crop"
+            title="FRAGRANCE"
+            subtitle="ELEGANCE IN A BOTTLE"
+            buttonText="Explore"
+            buttonPosition="left"
+            brightness="brightness-75"
+          />
+          <PromoBanner 
+            imageSrc="https://images.unsplash.com/photo-1605020420620-20c943cc4669?q=80&w=1600&auto=format&fit=crop"
+            title="SUMMER UNSTITCHED"
+            subtitle="PREMIUM KURTE PAJAME KA KAPDA"
+            buttonText="Shop now"
+            buttonPosition="right"
+            onButtonClick={() => setCurrentPage('unstitched')}
+            brightness="brightness-75"
+          />
+          
+          <ShopByCollection />
+          <FeaturedProduct />
+          <BestSellers />
+          <FeatureBar />
         </div>
-
-        {/* Dynamic Product Catalog Gallery */}
-        <ProductGrid
-          products={filteredProducts}
-          onAddToCart={addToCart}
-        />
-
-      </main>
+      ) : currentPage === 'kurta_pajama' ? (
+        <main className="flex-grow max-w-7xl w-full mx-auto px-4 py-20 flex flex-col items-center text-center animate-in fade-in duration-500">
+          <h1 className="text-3xl md:text-5xl font-extrabold mb-4 uppercase tracking-wider text-neutral-900">Kurta Pajama Collection</h1>
+          <p className="text-gray-500 mb-8 max-w-md mx-auto">This page is currently empty. Kurta Pajama list will be added here soon.</p>
+          <button 
+            onClick={() => setCurrentPage('home')}
+            className="bg-neutral-900 text-white px-6 py-2 rounded-full font-medium text-sm hover:bg-neutral-800 transition-colors"
+          >
+            ← Back to Home
+          </button>
+        </main>
+      ) : (
+        <main className="flex-grow max-w-7xl w-full mx-auto px-4 py-20 flex flex-col items-center text-center animate-in fade-in duration-500">
+          <h1 className="text-3xl md:text-5xl font-extrabold mb-4 uppercase tracking-wider text-neutral-900">Bina Sila Kapda</h1>
+          <p className="text-gray-500 mb-8 max-w-md mx-auto">This page is currently empty. Unstitched kurta pajama fabrics will be added here soon.</p>
+          <button 
+            onClick={() => setCurrentPage('home')}
+            className="bg-neutral-900 text-white px-6 py-2 rounded-full font-medium text-sm hover:bg-neutral-800 transition-colors"
+          >
+            ← Back to Home
+          </button>
+        </main>
+      )}
 
       {/* FAQs Collapsible Segment */}
       <FAQAccordion />

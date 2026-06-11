@@ -15,7 +15,7 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, x: 15 },
+  hidden: { opacity: 0, x: 30 },
   show: {
     opacity: 1,
     x: 0,
@@ -23,6 +23,30 @@ const itemVariants: Variants = {
       type: 'spring',
       stiffness: 100,
       damping: 14,
+    },
+  },
+};
+
+const mobileContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const mobileItemVariants: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 50,
+      damping: 15,
     },
   },
 };
@@ -114,7 +138,7 @@ export function Header({
   return (
     <header className="w-full bg-[#1a1a1a] font-sans relative z-40">
       {/* 1. TOP ANNOUNCEMENT & SOCIAL BAR */}
-      <div className="w-full bg-[#1a1a1a] text-white py-2 px-3 md:px-8 md:py-3.5 border-b border-neutral-800">
+      <div className="w-full bg-[#1a1a1a] text-white py-1.5 px-3 md:px-8 md:py-2.5 border-b border-neutral-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           {/* Social Icons (Left) - hidden on very small screens */}
           <div className="hidden sm:flex items-center gap-3 md:gap-5">
@@ -251,8 +275,8 @@ export function Header({
       {/* PARENT BACKGROUND wrapper FOR ARCING CURVES OVERLAY */}
       <div className="w-full bg-[#1a1a1a]">
         
-        {/* 2. THE VISUAL WHITE HEADER BODY (WITH MAJESTIC 40PX ROUNDED TOP CORNERS) */}
-        <div className="w-full bg-white rounded-t-[20px] sm:rounded-t-[28px] md:rounded-t-[40px] px-3 sm:px-4 md:px-8 pt-4 pb-3 sm:pt-5 sm:pb-4 md:pt-7 md:pb-6 shadow-sm border-b border-gray-100 relative">
+        {/* 2. THE VISUAL WHITE HEADER BODY */}
+        <div className="w-full bg-white rounded-t-[12px] sm:rounded-t-[16px] md:rounded-t-[20px] px-3 sm:px-4 md:px-8 pt-2.5 pb-2 sm:pt-3 sm:pb-3 md:pt-4 md:pb-3 shadow-sm border-b border-gray-100 relative">
           
           {/* Main Controls Row */}
           <div className="max-w-7xl mx-auto flex justify-between items-center bg-white relative">
@@ -300,7 +324,7 @@ export function Header({
     src={logo}
     alt="INAM MENS"
     // className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain"
-    className="h-10 sm:h-14 md:h-28 lg:h-22 w-auto object-contain"
+    className="h-9 sm:h-12 md:h-16 lg:h-16 w-auto object-contain"
     draggable={false}
   />
             </div>
@@ -373,13 +397,13 @@ export function Header({
           )}
 
           {/* 3. MULTI-LEVEL CENTRALIZE NAV CONTROLS (DESKTOP MODE) */}
-          <nav className="hidden md:block w-full mt-7 pt-4 border-t border-gray-50 select-none">
+          <nav className="hidden md:block w-full mt-3 pt-2.5 border-t border-gray-50 select-none">
             <div className="max-w-7xl mx-auto flex flex-col items-center gap-2">
-              <ul className="flex items-center justify-center gap-x-6 lg:gap-x-10 text-[12px] font-semibold tracking-wider text-neutral-800 uppercase">
+              <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-2 lg:gap-x-2 text-[14.5px] font-medium tracking-wide text-neutral-800">
                 {TEXT_CONSTANTS.NAV_LINKS.map((link) => (
                   <li
                     key={link.label}
-                    className="relative py-2"
+                    className="relative py-1"
                     onMouseEnter={() => setHoveredLink(link.label)}
                     onMouseLeave={() => setHoveredLink(null)}
                   >
@@ -390,46 +414,57 @@ export function Header({
                           e.preventDefault();
                         }
                       }}
-                      className={`transition-colors py-1 flex items-center gap-1 cursor-pointer font-bold text-[12px] tracking-wider uppercase ${
+                      className={`relative overflow-hidden transition-colors duration-300 flex items-center justify-center gap-1 cursor-pointer font-medium text-[14.5px] ${
                         link.isSale
-                          ? hoveredLink === link.label ? "text-[#c21a22]" : "text-red-500 hover:text-[#c21a22]"
-                          : hoveredLink === link.label ? "text-[#c5a880]" : "text-neutral-800 hover:text-[#c5a880]"
+                          ? "text-red-600 px-4 py-2"
+                          : "px-5 py-2.5 rounded-full"
+                      } ${
+                        !link.isSale && hoveredLink === link.label ? "text-white shadow-sm" : "text-neutral-800"
                       }`}
                     >
-                      {link.label}
+                      {!link.isSale && (
+                        <span 
+                          className={`absolute inset-0 bg-[#1a1a1a] rounded-full z-0 transition-transform duration-300 ease-out ${
+                            hoveredLink === link.label ? 'translate-y-0' : 'translate-y-[101%]'
+                          }`}
+                        />
+                      )}
+                      <span className="relative z-10">{link.label}</span>
                     </a>
 
                     <AnimatePresence>
                       {/* Standard 2-level dropdown */}
                       {link.submenu && !link.isMegaMenu && hoveredLink === link.label && (
-                        <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                          transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="absolute left-1/2 -translate-x-1/2 mt-6 w-52 bg-white border border-neutral-100 rounded-lg shadow-xl z-50 p-2 overflow-visible"
-                        >
-                          <div className="absolute top-[-24px] left-0 right-0 h-6 bg-transparent pointer-events-auto" />
-                          <motion.div variants={containerVariants} initial="hidden" animate="show" className="flex flex-col gap-0.5">
-                            {link.submenu.map((subItem) => (
-                              <motion.button
-                                variants={itemVariants}
-                                key={subItem.label}
-                                onClick={() => {
-                                  if (onSelectFilter) {
-                                    const item = subItem as { filterType?: string; searchQuery?: string; sortBy?: string };
-                                    onSelectFilter(item.filterType, item.searchQuery, item.sortBy);
-                                  }
-                                  setHoveredLink(null);
-                                }}
-                                className="w-full text-left px-3 py-2 text-[10.5px] font-bold tracking-wide uppercase text-neutral-700 hover:text-[#c5a880] hover:bg-neutral-50 rounded-lg transition-all flex items-center justify-between group/sub cursor-pointer"
-                              >
-                                <span>{subItem.label}</span>
-                                <span className="opacity-0 -translate-x-1 group-hover/sub:opacity-100 group-hover/sub:translate-x-0 transition-all duration-150 text-neutral-400">→</span>
-                              </motion.button>
-                            ))}
+                        <div className="absolute left-0 top-full pt-[12px] w-[270px] z-50">
+                          {/* Invisible bridge to keep hover state active while moving mouse down */}
+                          <div className="absolute top-0 left-0 right-0 h-[12px] bg-transparent pointer-events-auto" />
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+                            className="bg-white border-b border-l border-r border-gray-100 shadow-2xl overflow-hidden rounded-b-md"
+                          >
+                            <motion.div variants={containerVariants} initial="hidden" animate="show" className="flex flex-col gap-4 p-7 pt-6">
+                              {link.submenu.map((subItem) => (
+                                <motion.button
+                                  variants={itemVariants}
+                                  key={subItem.label}
+                                  onClick={() => {
+                                    if (onSelectFilter) {
+                                      const item = subItem as { filterType?: string; searchQuery?: string; sortBy?: string };
+                                      onSelectFilter(item.filterType, item.searchQuery, item.sortBy);
+                                    }
+                                    setHoveredLink(null);
+                                  }}
+                                  className="w-full text-left text-[14px] font-medium text-gray-500 hover:text-black hover:translate-x-1.5 transition-all flex items-center cursor-pointer"
+                                >
+                                  <span>{subItem.label}</span>
+                                </motion.button>
+                              ))}
+                            </motion.div>
                           </motion.div>
-                        </motion.div>
+                        </div>
                       )}
 
                       {/* Mega menu for Unstitched (3 columns) */}
@@ -485,10 +520,24 @@ export function Header({
       </div>
 
       {/* MOBILE RESPONSIVE DRAWER */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-black/60 z-50 transition-opacity md:hidden" id="mobile-menu-backdrop">
-          <div className="w-[85%] max-w-xs bg-white h-full p-5 md:p-6 shadow-2xl relative flex flex-col justify-between animate-in slide-in-from-left duration-300 overflow-y-auto">
-            <div>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 bg-black/60 z-50 md:hidden flex flex-col justify-end overflow-hidden" 
+            id="mobile-menu-backdrop"
+          >
+            <motion.div 
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 100, mass: 0.8 }}
+              className="w-full bg-white h-[90vh] rounded-t-3xl p-5 md:p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.2)] relative flex flex-col justify-between overflow-y-auto"
+            >
+              <div>
               <div className="flex justify-between items-center mb-8 border-b border-gray-100 pb-4">
                 <span className="text-sm font-black tracking-widest text-neutral-900 uppercase">INAM MENS</span>
                 <button
@@ -500,13 +549,13 @@ export function Header({
                 </button>
               </div>
 
-              <ul className="flex flex-col gap-2 text-xs font-bold tracking-wider text-neutral-800">
+              <motion.ul variants={mobileContainerVariants} initial="hidden" animate="show" className="flex flex-col gap-2 text-xs font-bold tracking-wider text-neutral-800">
                 {TEXT_CONSTANTS.NAV_LINKS.map((link) => {
                   const hasSubmenu = !!link.submenu && !link.isMegaMenu;
                   const hasMegaMenu = !!link.isMegaMenu && !!link.megaCategories;
                   const isOpen = mobileOpenSubmenu === link.label;
                   return (
-                    <li key={link.label} className="border-b border-gray-50 py-1">
+                    <motion.li variants={mobileItemVariants} key={link.label} className="border-b border-gray-50 py-1">
                       {hasSubmenu ? (
                         <div>
                           <button
@@ -586,10 +635,10 @@ export function Header({
                           {link.label}
                         </a>
                       )}
-                    </li>
+                    </motion.li>
                   );
                 })}
-              </ul>
+              </motion.ul>
             </div>
 
             <div className="border-t border-gray-100 pt-4 mt-4 pb-safe">
@@ -599,9 +648,10 @@ export function Header({
               </div>
               <p className="text-[11px] text-gray-500 font-light">{TEXT_CONSTANTS.WHATSAPP_SUPPORT}</p>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

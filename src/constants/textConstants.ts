@@ -1,3 +1,12 @@
+export type NavLink = {
+  label: string;
+  href: string;
+  isSale?: boolean;
+  isMegaMenu?: boolean;
+  megaCategories?: { title: string; items: { label: string; href: string; searchQuery?: string }[] }[];
+  submenu?: { label: string; href: string }[];
+};
+
 export const TEXT_CONSTANTS = {
   // Brand Header Elements
   BRAND_NAME: "INAM MENS",
@@ -10,32 +19,17 @@ export const TEXT_CONSTANTS = {
   // Top Nav Category Links
   NAV_LINKS: [
     {
-      label: "New Arrivals",
-      href: "#new-arrivals",
-      submenu: [
-        { label: "Latest Kameez Shalwar", href: "#new-arrivals", filterType: "kameez_shalwar" },
-        { label: "New Waistcoats", href: "#new-arrivals", filterType: "waistcoat" },
-        { label: "New Safari Suits", href: "#new-arrivals", filterType: "safari_suit" }
-      ]
+      label: "New Arrival",
+      href: "#new-arrival",
     },
     {
-      label: "Sale / Discount",
+      label: "Sale/Discount",
       href: "#sale",
       isSale: true,
-      submenu: [
-        { label: "Flat 30% Off", href: "#sale", sortBy: "discount_desc" },
-        { label: "Flat 40% Off", href: "#sale", sortBy: "discount_desc" },
-        { label: "Best Deals", href: "#sale", sortBy: "discount_desc" }
-      ]
     },
     {
-      label: "Catalog / Embroidery",
+      label: "Catalog / Embroidery Collection",
       href: "#catalog",
-      submenu: [
-        { label: "Embroidered Kameez Shalwar", href: "#catalog", filterType: "kameez_shalwar" },
-        { label: "Embroidered Trouser Kameez", href: "#catalog", filterType: "trouser_kameez" },
-        { label: "Full Catalog", href: "#catalog", sortBy: "featured" }
-      ]
     },
     {
       label: "Unstitched",
@@ -57,10 +51,10 @@ export const TEXT_CONSTANTS = {
           ]
         },
         {
-          title: "Wash & Wear / Blended",
+          title: "Wash & Wear/Blended",
           items: [
-            { label: "Plain Wash & Wear", href: "#plain-wash", searchQuery: "Plain Wash" },
-            { label: "Embroidered Wash & Wear", href: "#embroidered-wash", searchQuery: "Embroidered Wash" }
+            { label: "Plain Wash & Wear", href: "#plain-wash-wear", searchQuery: "Plain Wash Wear" },
+            { label: "Embroidered Wash & Wear", href: "#embroidered-wash-wear", searchQuery: "Embroidered Wash Wear" }
           ]
         }
       ]
@@ -68,30 +62,16 @@ export const TEXT_CONSTANTS = {
     {
       label: "All Season Fabrics",
       href: "#all-season",
-      submenu: [
-        { label: "Kameez Shalwar", href: "#all-season", filterType: "kameez_shalwar" },
-        { label: "Trouser Kameez", href: "#all-season", filterType: "trouser_kameez" },
-        { label: "Waistcoats", href: "#all-season", filterType: "waistcoat" }
-      ]
     },
     {
       label: "Premium Suiting",
       href: "#suiting",
-      submenu: [
-        { label: "Safari Suit", href: "#suiting", filterType: "safari_suit" },
-        { label: "3-Piece Suit", href: "#suiting", searchQuery: "Suit" },
-        { label: "Blazers", href: "#suiting", searchQuery: "Blazer" }
-      ]
     },
     {
       label: "Ihrams",
       href: "#ihrams",
-      submenu: [
-        { label: "Standard Ihram", href: "#ihrams", searchQuery: "Ihram" },
-        { label: "Premium Ihram", href: "#ihrams", searchQuery: "Premium Ihram" }
-      ]
     }
-  ],
+  ] as NavLink[],
 
   // Filter Buttons & Interface
   SHOW_FILTERS_BTN: "Show filters",
