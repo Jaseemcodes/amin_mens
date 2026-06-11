@@ -185,7 +185,7 @@ export function CartDrawer({
                       <span>Cash On Delivery</span>
                     </label>
                     <label className={`flex items-center gap-2 border rounded p-2.5 text-xs font-bold cursor-pointer select-none transition-all ${
-                      customerInfo.paymentMethod === 'alfa_pay' ? 'border-purple-600 bg-purple-50/40' : 'border-gray-200 hover:bg-gray-55'
+                      customerInfo.paymentMethod === 'alfa_pay' ? 'border-purple-600 bg-purple-50/40' : 'border-gray-200 hover:bg-gray-50'
                     }`}>
                       <input
                         type="radio"
@@ -265,7 +265,7 @@ export function CartDrawer({
                               className="p-1 px-1.5 text-gray-500 hover:text-black cursor-pointer hover:bg-gray-50"
                               aria-label="Decrease quantity"
                             >
-                              <Minus className="w-3 H-3" />
+                              <Minus className="w-3 h-3" />
                             </button>
                             <span className="text-xs font-bold w-6 text-center select-none">{item.quantity}</span>
                             <button
@@ -273,13 +273,13 @@ export function CartDrawer({
                               className="p-1 px-1.5 text-gray-500 hover:text-black cursor-pointer hover:bg-gray-50"
                               aria-label="Increase quantity"
                             >
-                              <Plus className="w-3 H-3" />
+                              <Plus className="w-3 h-3" />
                             </button>
                           </div>
                           
                           <button
                             onClick={() => removeFromCart(item.product.id)}
-                            className="p-1 text-gray-400 hover:text-red-650 cursor-pointer"
+                            className="p-1 text-gray-400 hover:text-red-600 cursor-pointer"
                             aria-label="Remove item"
                           >
                             <Trash2 className="w-3.5 h-3.5" />

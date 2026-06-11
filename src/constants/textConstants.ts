@@ -9,89 +9,86 @@ export const TEXT_CONSTANTS = {
 
   // Top Nav Category Links
   NAV_LINKS: [
-    { 
-      label: "SALE", 
+    {
+      label: "New Arrivals",
+      href: "#new-arrivals",
+      submenu: [
+        { label: "Latest Kameez Shalwar", href: "#new-arrivals", filterType: "kameez_shalwar" },
+        { label: "New Waistcoats", href: "#new-arrivals", filterType: "waistcoat" },
+        { label: "New Safari Suits", href: "#new-arrivals", filterType: "safari_suit" }
+      ]
+    },
+    {
+      label: "Sale / Discount",
       href: "#sale",
+      isSale: true,
       submenu: [
         { label: "Flat 30% Off", href: "#sale", sortBy: "discount_desc" },
         { label: "Flat 40% Off", href: "#sale", sortBy: "discount_desc" },
         { label: "Best Deals", href: "#sale", sortBy: "discount_desc" }
       ]
     },
-    { 
-      label: "Summer Unstitched '26'", 
-      href: "#summer",
+    {
+      label: "Catalog / Embroidery",
+      href: "#catalog",
       submenu: [
-        { label: "Premium Cotton", href: "#summer", searchQuery: "Gold" },
-        { label: "Wash & Wear", href: "#summer", searchQuery: "Grey" },
-        { label: "Linen Fabrics", href: "#summer", searchQuery: "Pistachio" }
+        { label: "Embroidered Kameez Shalwar", href: "#catalog", filterType: "kameez_shalwar" },
+        { label: "Embroidered Trouser Kameez", href: "#catalog", filterType: "trouser_kameez" },
+        { label: "Full Catalog", href: "#catalog", sortBy: "featured" }
       ]
     },
-    { 
-      label: "FQ Stitched Collection", 
-      href: "#fq",
-      submenu: [
-        { label: "Kameez Shalwar", href: "#fq", filterType: "kameez_shalwar" },
-        { label: "Waistcoats", href: "#fq", filterType: "waistcoat" },
-        { label: "Safari Suits", href: "#fq", filterType: "safari_suit" },
-        { label: "Trouser Kameez", href: "#fq", filterType: "trouser_kameez" }
+    {
+      label: "Unstitched",
+      href: "#unstitched",
+      isMegaMenu: true,
+      megaCategories: [
+        {
+          title: "Cotton",
+          items: [
+            { label: "Cotton Plain", href: "#cotton-plain", searchQuery: "Cotton Plain" },
+            { label: "Cotton Embroidered", href: "#cotton-embroidered", searchQuery: "Cotton Embroidered" }
+          ]
+        },
+        {
+          title: "Boski",
+          items: [
+            { label: "Boski Plain", href: "#boski-plain", searchQuery: "Boski Plain" },
+            { label: "Boski Embroidered", href: "#boski-embroidered", searchQuery: "Boski Embroidered" }
+          ]
+        },
+        {
+          title: "Wash & Wear / Blended",
+          items: [
+            { label: "Plain Wash & Wear", href: "#plain-wash", searchQuery: "Plain Wash" },
+            { label: "Embroidered Wash & Wear", href: "#embroidered-wash", searchQuery: "Embroidered Wash" }
+          ]
+        }
       ]
     },
-    { 
-      label: "Luxe Series", 
-      href: "#luxe",
+    {
+      label: "All Season Fabrics",
+      href: "#all-season",
       submenu: [
-        { label: "Giza Cotton", href: "#luxe", searchQuery: "Gold" },
-        { label: "Italian Linen", href: "#luxe", searchQuery: "White" },
-        { label: "Luxury Silk Blends", href: "#luxe", searchQuery: "Wine" }
+        { label: "Kameez Shalwar", href: "#all-season", filterType: "kameez_shalwar" },
+        { label: "Trouser Kameez", href: "#all-season", filterType: "trouser_kameez" },
+        { label: "Waistcoats", href: "#all-season", filterType: "waistcoat" }
       ]
     },
-    { 
-      label: "Bosky Collection", 
-      href: "#bosky",
+    {
+      label: "Premium Suiting",
+      href: "#suiting",
       submenu: [
-        { label: "Chinese Bosky (6 Lbs)", href: "#bosky", searchQuery: "Off White" },
-        { label: "Chinese Bosky (8 Lbs)", href: "#bosky", searchQuery: "Cream" }
+        { label: "Safari Suit", href: "#suiting", filterType: "safari_suit" },
+        { label: "3-Piece Suit", href: "#suiting", searchQuery: "Suit" },
+        { label: "Blazers", href: "#suiting", searchQuery: "Blazer" }
       ]
     },
-    { 
-      label: "Koofi Caps", 
-      href: "#koofi",
+    {
+      label: "Ihrams",
+      href: "#ihrams",
       submenu: [
-        { label: "Stitched Caps", href: "#koofi", searchQuery: "Cap" },
-        { label: "Handcrafted Caps", href: "#koofi", searchQuery: "Hand" }
-      ]
-    },
-    { 
-      label: "Sandals", 
-      href: "#sandals",
-      submenu: [
-        { label: "Peshawari Chappal", href: "#sandals", searchQuery: "Sandal" },
-        { label: "Balochi Chappal", href: "#sandals", searchQuery: "Balochi" }
-      ]
-    },
-    { 
-      label: "Fragrances", 
-      href: "#fragrances",
-      submenu: [
-        { label: "Royal Oud", href: "#fragrances", searchQuery: "Oud" },
-        { label: "Imperial Musk", href: "#fragrances", searchQuery: "Musk" }
-      ]
-    },
-    { 
-      label: "Winter Collection", 
-      href: "#winter",
-      submenu: [
-        { label: "Woolen Shalwar Kameez", href: "#winter", searchQuery: "Maroon" },
-        { label: "Premium Blazers", href: "#winter", searchQuery: "Navy Blue" }
-      ]
-    },
-    { 
-      label: "Narmin (For Women)", 
-      href: "#narmin",
-      submenu: [
-        { label: "Luxury Pret", href: "#narmin", searchQuery: "Cream" },
-        { label: "Unstitched Collection", href: "#narmin", searchQuery: "Off White" }
+        { label: "Standard Ihram", href: "#ihrams", searchQuery: "Ihram" },
+        { label: "Premium Ihram", href: "#ihrams", searchQuery: "Premium Ihram" }
       ]
     }
   ],

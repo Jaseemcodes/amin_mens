@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { TEXT_CONSTANTS } from '../../constants/textConstants';
+import logo from '../../assets/images/logo.png'
+
 
 // Social icon SVG paths for reuse
 const SOCIAL_ICONS = {
@@ -130,12 +132,21 @@ export function Footer() {
           {/* Column 1: Brand Info */}
           <div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-start mb-2 sm:mb-0">
             {/* Brand Logo SVG */}
-            <svg
+            {/* <svg
               viewBox="0 0 230 40"
               className="h-6 sm:h-8 md:h-9 w-auto text-white fill-current mb-2 sm:mb-3"
               xmlns="http://www.w3.org/2000/svg"
-            >
-              <g transform="translate(2, 2)" stroke="currentColor" strokeWidth="1.2" fill="none">
+            > */}
+              <div className="flex items-center justify-center select-none" id="inammens-main-brand-logo">
+  <img
+    src={logo}
+    alt="INAM MENS"
+    // className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain"
+    className="h-6 sm:h-8 md:h-9 w-auto text-white fill-current mb-2 sm:mb-3"
+    draggable={false}
+  />
+</div>
+              {/* <g transform="translate(2, 2)" stroke="currentColor" strokeWidth="1.2" fill="none">
                 <text x="18" y="22.5" fontFamily="'Space Grotesk', 'Inter', sans-serif" fontWeight="850" fontSize="15" textAnchor="middle" fill="currentColor" stroke="none">I</text>
                 <circle cx="18" cy="18" r="11" strokeWidth="1.25" />
                 <circle cx="18" cy="18" r="13.5" strokeDasharray="1.2 1.8" strokeWidth="0.8" />
@@ -149,13 +160,13 @@ export function Footer() {
                 <path d="M 25,6 C 28,4 30,8 27,11 C 24,14 23,12 25,6 Z" fill="currentColor" stroke="none" />
                 <path d="M 15,3 C 18,1 20,1 21,3 C 19,5 17,5 15,3 Z M 18,1 L 18,5" />
                 <circle cx="18" cy="0.5" r="1.2" fill="currentColor" stroke="none" />
-              </g>
-              <text x="45" y="26.5" fontFamily="'Space Grotesk', 'Inter', sans-serif" fontWeight="900" fontSize="20" letterSpacing="1.2" fill="currentColor" stroke="none">INAM MENS</text>
-              <g transform="translate(178, 8)" stroke="currentColor" strokeWidth="0.8" fill="none">
+              </g> */}
+              {/* <text x="45" y="26.5" fontFamily="'Space Grotesk', 'Inter', sans-serif" fontWeight="900" fontSize="20" letterSpacing="1.2" fill="currentColor" stroke="none">INAM MENS</text> */}
+              {/* <g transform="translate(178, 8)" stroke="currentColor" strokeWidth="0.8" fill="none">
                 <circle cx="5" cy="5" r="4.5" strokeWidth="0.8" />
                 <text x="5" y="7.8" fontFamily="sans-serif" fontWeight="bold" fontSize="5.5" textAnchor="middle" fill="currentColor" stroke="none">R</text>
-              </g>
-            </svg>
+              </g> */}
+            {/* </svg> */}
             <p className="text-[11px] sm:text-[11px] md:text-xs text-neutral-400 font-light leading-relaxed text-center md:text-left max-w-[280px] sm:max-w-xs">
               {TEXT_CONSTANTS.TAGLINE}
             </p>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Search, User, ShoppingCart, Menu, X, Phone } from 'lucide-react';
 import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { TEXT_CONSTANTS } from '../../constants/textConstants';
-
+import logo from '../../assets/images/logo.png'
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -65,7 +65,7 @@ export function Header({
   const [scCoords, setScCoords] = useState({ x: 0, y: 0 });
   const [liCoords, setLiCoords] = useState({ x: 0, y: 0 });
 
-  const calculateMagneticPull = (e: React.MouseEvent<any>, maxPull: number = 10) => {
+  const calculateMagneticPull = (e: React.MouseEvent, maxPull: number = 10) => {
     const { clientX, clientY, currentTarget } = e;
     const rect = currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -79,25 +79,25 @@ export function Header({
     return { x: pullX, y: pullY };
   };
 
-  const handleMenuMouseMove = (e: React.MouseEvent<any>) => {
+  const handleMenuMouseMove = (e: React.MouseEvent) => {
     setMenuCoords(calculateMagneticPull(e));
   };
-  const handleSearchMouseMove = (e: React.MouseEvent<any>) => {
+  const handleSearchMouseMove = (e: React.MouseEvent) => {
     setSearchCoords(calculateMagneticPull(e));
   };
-  const handleUserMouseMove = (e: React.MouseEvent<any>) => {
+  const handleUserMouseMove = (e: React.MouseEvent) => {
     setUserCoords(calculateMagneticPull(e));
   };
-  const handleCartMouseMove = (e: React.MouseEvent<any>) => {
+  const handleCartMouseMove = (e: React.MouseEvent) => {
     setCartCoords(calculateMagneticPull(e));
   };
 
-  const handleFbMouseMove = (e: React.MouseEvent<any>) => setFbCoords(calculateMagneticPull(e, 8));
-  const handleIgMouseMove = (e: React.MouseEvent<any>) => setIgCoords(calculateMagneticPull(e, 8));
-  const handleYtMouseMove = (e: React.MouseEvent<any>) => setYtCoords(calculateMagneticPull(e, 8));
-  const handleTtMouseMove = (e: React.MouseEvent<any>) => setTtCoords(calculateMagneticPull(e, 8));
-  const handleScMouseMove = (e: React.MouseEvent<any>) => setScCoords(calculateMagneticPull(e, 8));
-  const handleLiMouseMove = (e: React.MouseEvent<any>) => setLiCoords(calculateMagneticPull(e, 8));
+  const handleFbMouseMove = (e: React.MouseEvent) => setFbCoords(calculateMagneticPull(e, 8));
+  const handleIgMouseMove = (e: React.MouseEvent) => setIgCoords(calculateMagneticPull(e, 8));
+  const handleYtMouseMove = (e: React.MouseEvent) => setYtCoords(calculateMagneticPull(e, 8));
+  const handleTtMouseMove = (e: React.MouseEvent) => setTtCoords(calculateMagneticPull(e, 8));
+  const handleScMouseMove = (e: React.MouseEvent) => setScCoords(calculateMagneticPull(e, 8));
+  const handleLiMouseMove = (e: React.MouseEvent) => setLiCoords(calculateMagneticPull(e, 8));
 
   const handleMenuMouseLeave = () => setMenuCoords({ x: 0, y: 0 });
   const handleSearchMouseLeave = () => setSearchCoords({ x: 0, y: 0 });
@@ -296,77 +296,13 @@ export function Header({
 
             {/* Center Column: Intricate Vector Drawn Shield Emblem and futuristic Typo brand Wordmark */}
             <div className="flex items-center justify-center select-none" id="inammens-main-brand-logo">
-              <svg 
-                viewBox="0 0 230 40" 
-                className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto text-black fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {/* 1. Brand Crest/Shield Guard Pattern representation */}
-                <g transform="translate(2, 2)" stroke="currentColor" strokeWidth="1.2" fill="none">
-                  {/* Inside core I */}
-                  <text 
-                    x="18" 
-                    y="22.5" 
-                    fontFamily="'Space Grotesk', 'Inter', sans-serif" 
-                    fontWeight="850" 
-                    fontSize="15" 
-                    textAnchor="middle" 
-                    fill="currentColor" 
-                    stroke="none"
-                  >
-                    I
-                  </text>
-                  {/* Shield circle bounds */}
-                  <circle cx="18" cy="18" r="11" strokeWidth="1.25" />
-                  <circle cx="18" cy="18" r="13.5" strokeDasharray="1.2 1.8" strokeWidth="0.8" />
-                  
-                  {/* Garland Laurels - Left Side */}
-                  <path d="M 10,23 C 5,20 4,25 7,28 C 10,31 11,30 10,23 Z" fill="currentColor" stroke="none" />
-                  <path d="M 6,17 C 1,15 0,20 3,22 C 6,24 7,23 6,17 Z" fill="currentColor" stroke="none" />
-                  <path d="M 7,11 C 3,9 2,14 5,16 C 8,18 9,17 7,11 Z" fill="currentColor" stroke="none" />
-                  <path d="M 11,6 C 8,4 6,8 9,11 C 12,14 13,12 11,6 Z" fill="currentColor" stroke="none" />
-                  
-                  {/* Garland Laurels - Right Side */}
-                  <path d="M 26,23 C 31,20 32,25 29,28 C 26,31 25,30 26,23 Z" fill="currentColor" stroke="none" />
-                  <path d="M 30,17 C 35,15 36,20 33,22 C 30,24 29,23 30,17 Z" fill="currentColor" stroke="none" />
-                  <path d="M 29,11 C 33,9 34,14 31,16 C 28,18 27,17 29,11 Z" fill="currentColor" stroke="none" />
-                  <path d="M 25,6 C 28,4 30,8 27,11 C 24,14 23,12 25,6 Z" fill="currentColor" stroke="none" />
-
-                  {/* Top Crown Emblem segment */}
-                  <path d="M 15,3 C 18,1 20,1 21,3 C 19,5 17,5 15,3 Z M 18,1 L 18,5" />
-                  <circle cx="18" cy="0.5" r="1.2" fill="currentColor" stroke="none" />
-                </g>
-
-                {/* 2. Bold modern brand typography "INAM MENS" with the premium trademark logo */}
-                <text 
-                  x="45" 
-                  y="26.5" 
-                  fontFamily="'Space Grotesk', 'Inter', sans-serif" 
-                  fontWeight="900" 
-                  fontSize="20" 
-                  letterSpacing="1.2" 
-                  fill="currentColor" 
-                  stroke="none"
-                >
-                  INAM MENS
-                </text>
-                {/* Registered Symbol ® */}
-                <g transform="translate(178, 8)" stroke="currentColor" strokeWidth="0.8" fill="none">
-                  <circle cx="5" cy="5" r="4.5" strokeWidth="0.8" />
-                  <text 
-                    x="5" 
-                    y="7.8" 
-                    fontFamily="sans-serif" 
-                    fontWeight="bold" 
-                    fontSize="5.5" 
-                    textAnchor="middle" 
-                    fill="currentColor" 
-                    stroke="none"
-                  >
-                    R
-                  </text>
-                </g>
-              </svg>
+              <img
+    src={logo}
+    alt="INAM MENS"
+    // className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain"
+    className="h-10 sm:h-14 md:h-28 lg:h-22 w-auto object-contain"
+    draggable={false}
+  />
             </div>
 
             {/* Right Column: User Profile and Wireframe shopping cart bag icons */}
@@ -436,14 +372,12 @@ export function Header({
             </div>
           )}
 
-          {/* 3. MULTI-LEVEL CENTRALIZE NAV CONTROLS (DESKTOP MODE MATCHING THE ATTACHMENT) */}
+          {/* 3. MULTI-LEVEL CENTRALIZE NAV CONTROLS (DESKTOP MODE) */}
           <nav className="hidden md:block w-full mt-7 pt-4 border-t border-gray-50 select-none">
             <div className="max-w-7xl mx-auto flex flex-col items-center gap-2">
-              
-              {/* Row 1 (Links 1-8) */}
-              <ul className="flex items-center justify-center gap-x-8 lg:gap-x-12 text-[12px] font-semibold tracking-wider text-neutral-800 uppercase">
-                {TEXT_CONSTANTS.NAV_LINKS.slice(0, 8).map((link) => (
-                  <li 
+              <ul className="flex items-center justify-center gap-x-6 lg:gap-x-10 text-[12px] font-semibold tracking-wider text-neutral-800 uppercase">
+                {TEXT_CONSTANTS.NAV_LINKS.map((link) => (
+                  <li
                     key={link.label}
                     className="relative py-2"
                     onMouseEnter={() => setHoveredLink(link.label)}
@@ -452,12 +386,12 @@ export function Header({
                     <a
                       href={link.href}
                       onClick={(e) => {
-                        if (link.submenu) {
+                        if (link.submenu || link.isMegaMenu) {
                           e.preventDefault();
                         }
                       }}
                       className={`transition-colors py-1 flex items-center gap-1 cursor-pointer font-bold text-[12px] tracking-wider uppercase ${
-                        link.label === "SALE"
+                        link.isSale
                           ? hoveredLink === link.label ? "text-[#c21a22]" : "text-red-500 hover:text-[#c21a22]"
                           : hoveredLink === link.label ? "text-[#c5a880]" : "text-neutral-800 hover:text-[#c5a880]"
                       }`}
@@ -466,30 +400,25 @@ export function Header({
                     </a>
 
                     <AnimatePresence>
-                      {link.submenu && hoveredLink === link.label && (
+                      {/* Standard 2-level dropdown */}
+                      {link.submenu && !link.isMegaMenu && hoveredLink === link.label && (
                         <motion.div
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -5 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="absolute left-1/2 -translate-x-1/2 mt-6 w-48 bg-white border border-neutral-100 rounded-lg shadow-xl z-50 p-2 overflow-visible"
+                          className="absolute left-1/2 -translate-x-1/2 mt-6 w-52 bg-white border border-neutral-100 rounded-lg shadow-xl z-50 p-2 overflow-visible"
                         >
-                          {/* Invisible Hover Bridge */}
                           <div className="absolute top-[-24px] left-0 right-0 h-6 bg-transparent pointer-events-auto" />
-
-                          <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            animate="show"
-                            className="flex flex-col gap-0.5"
-                          >
+                          <motion.div variants={containerVariants} initial="hidden" animate="show" className="flex flex-col gap-0.5">
                             {link.submenu.map((subItem) => (
                               <motion.button
                                 variants={itemVariants}
                                 key={subItem.label}
                                 onClick={() => {
                                   if (onSelectFilter) {
-                                    onSelectFilter(subItem.filterType, subItem.searchQuery, subItem.sortBy);
+                                    const item = subItem as { filterType?: string; searchQuery?: string; sortBy?: string };
+                                    onSelectFilter(item.filterType, item.searchQuery, item.sortBy);
                                   }
                                   setHoveredLink(null);
                                 }}
@@ -502,69 +431,45 @@ export function Header({
                           </motion.div>
                         </motion.div>
                       )}
-                    </AnimatePresence>
-                  </li>
-                ))}
-              </ul>
 
-              {/* Row 2 (Remaining 2 Links - Winter and Narmin For Women) */}
-              <ul className="flex items-center justify-center gap-x-10 text-[12px] font-semibold tracking-wider text-neutral-800 uppercase mt-2">
-                {TEXT_CONSTANTS.NAV_LINKS.slice(8).map((link) => (
-                  <li 
-                    key={link.label}
-                    className="relative py-2"
-                    onMouseEnter={() => setHoveredLink(link.label)}
-                    onMouseLeave={() => setHoveredLink(null)}
-                  >
-                    <a
-                      href={link.href}
-                      onClick={(e) => {
-                        if (link.submenu) {
-                          e.preventDefault();
-                        }
-                      }}
-                      className={`transition-colors py-1 flex items-center gap-1 cursor-pointer font-bold text-[12px] tracking-wider uppercase ${
-                        link.label === "SALE"
-                          ? hoveredLink === link.label ? "text-[#c21a22]" : "text-red-500 hover:text-[#c21a22]"
-                          : hoveredLink === link.label ? "text-[#c5a880]" : "text-neutral-800 hover:text-[#c5a880]"
-                      }`}
-                    >
-                      {link.label}
-                    </a>
-
-                    <AnimatePresence>
-                      {link.submenu && hoveredLink === link.label && (
+                      {/* Mega menu for Unstitched (3 columns) */}
+                      {link.isMegaMenu && link.megaCategories && hoveredLink === link.label && (
                         <motion.div
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -5 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="absolute left-1/2 -translate-x-1/2 mt-6 w-48 bg-white border border-neutral-100 rounded-lg shadow-xl z-50 p-2 overflow-visible"
+                          className="absolute left-1/2 -translate-x-1/2 mt-6 w-[460px] bg-white border border-neutral-100 rounded-xl shadow-2xl z-50 p-5 overflow-visible"
                         >
-                          {/* Invisible Hover Bridge */}
                           <div className="absolute top-[-24px] left-0 right-0 h-6 bg-transparent pointer-events-auto" />
-
                           <motion.div
                             variants={containerVariants}
                             initial="hidden"
                             animate="show"
-                            className="flex flex-col gap-0.5"
+                            className="grid grid-cols-3 gap-4"
                           >
-                            {link.submenu.map((subItem) => (
-                              <motion.button
-                                variants={itemVariants}
-                                key={subItem.label}
-                                onClick={() => {
-                                  if (onSelectFilter) {
-                                    onSelectFilter(subItem.filterType, subItem.searchQuery, subItem.sortBy);
-                                  }
-                                  setHoveredLink(null);
-                                }}
-                                className="w-full text-left px-3 py-2 text-[10.5px] font-bold tracking-wide uppercase text-neutral-700 hover:text-[#c5a880] hover:bg-neutral-50 rounded-lg transition-all flex items-center justify-between group/sub cursor-pointer"
-                              >
-                                <span>{subItem.label}</span>
-                                <span className="opacity-0 -translate-x-1 group-hover/sub:opacity-100 group-hover/sub:translate-x-0 transition-all duration-150 text-neutral-400">→</span>
-                              </motion.button>
+                            {link.megaCategories.map((cat) => (
+                              <div key={cat.title}>
+                                <p className="text-[9px] font-black tracking-widest uppercase text-neutral-400 mb-2 border-b border-gray-100 pb-1.5">{cat.title}</p>
+                                <div className="flex flex-col gap-0.5">
+                                  {cat.items.map((item) => (
+                                    <motion.button
+                                      variants={itemVariants}
+                                      key={item.label}
+                                      onClick={() => {
+                                        if (onSelectFilter) {
+                                          onSelectFilter(undefined, item.searchQuery, undefined);
+                                        }
+                                        setHoveredLink(null);
+                                      }}
+                                      className="w-full text-left px-2 py-1.5 text-[10.5px] font-bold tracking-wide uppercase text-neutral-700 hover:text-[#c5a880] hover:bg-neutral-50 rounded-md transition-all flex items-center justify-between group/mega cursor-pointer"
+                                    >
+                                      <span>{item.label}</span>
+                                      <span className="opacity-0 -translate-x-1 group-hover/mega:opacity-100 group-hover/mega:translate-x-0 transition-all duration-150 text-neutral-400 text-xs">→</span>
+                                    </motion.button>
+                                  ))}
+                                </div>
+                              </div>
                             ))}
                           </motion.div>
                         </motion.div>
@@ -573,7 +478,6 @@ export function Header({
                   </li>
                 ))}
               </ul>
-
             </div>
           </nav>
 
@@ -598,11 +502,45 @@ export function Header({
 
               <ul className="flex flex-col gap-2 text-xs font-bold tracking-wider text-neutral-800">
                 {TEXT_CONSTANTS.NAV_LINKS.map((link) => {
-                  const hasSubmenu = !!link.submenu;
+                  const hasSubmenu = !!link.submenu && !link.isMegaMenu;
+                  const hasMegaMenu = !!link.isMegaMenu && !!link.megaCategories;
                   const isOpen = mobileOpenSubmenu === link.label;
                   return (
                     <li key={link.label} className="border-b border-gray-50 py-1">
                       {hasSubmenu ? (
+                        <div>
+                          <button
+                            onClick={() => setMobileOpenSubmenu(isOpen ? null : link.label)}
+                            className={`w-full flex items-center justify-between py-2.5 uppercase text-left font-bold cursor-pointer ${
+                              link.isSale ? 'text-red-500' : 'hover:text-black'
+                            }`}
+                          >
+                            <span>{link.label}</span>
+                            <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </button>
+                          {isOpen && (
+                            <div className="pl-4 pb-2 flex flex-col gap-2 mt-1 animate-in fade-in duration-200">
+                              {link.submenu!.map((subItem) => (
+                                <button
+                                  key={subItem.label}
+                                  onClick={() => {
+                                    if (onSelectFilter) {
+                                      const item = subItem as { filterType?: string; searchQuery?: string; sortBy?: string };
+                                      onSelectFilter(item.filterType, item.searchQuery, item.sortBy);
+                                    }
+                                    setIsMobileMenuOpen(false);
+                                  }}
+                                  className="w-full text-left py-2 text-[11px] font-medium text-neutral-600 hover:text-black uppercase cursor-pointer"
+                                >
+                                  {subItem.label}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ) : hasMegaMenu ? (
                         <div>
                           <button
                             onClick={() => setMobileOpenSubmenu(isOpen ? null : link.label)}
@@ -613,23 +551,28 @@ export function Header({
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
                             </svg>
                           </button>
-                          
-                          {/* Mobile Submenu items */}
                           {isOpen && (
-                            <div className="pl-4 pb-2 flex flex-col gap-2 mt-1 animate-in fade-in duration-200">
-                              {link.submenu.map((subItem) => (
-                                <button
-                                  key={subItem.label}
-                                  onClick={() => {
-                                    if (onSelectFilter) {
-                                      onSelectFilter(subItem.filterType, subItem.searchQuery, subItem.sortBy);
-                                    }
-                                    setIsMobileMenuOpen(false);
-                                  }}
-                                  className="w-full text-left py-2 text-[11px] font-medium text-neutral-600 hover:text-black uppercase cursor-pointer"
-                                >
-                                  {subItem.label}
-                                </button>
+                            <div className="pl-2 pb-2 mt-1 animate-in fade-in duration-200">
+                              {link.megaCategories!.map((cat) => (
+                                <div key={cat.title} className="mb-3">
+                                  <p className="text-[9px] font-black tracking-widest uppercase text-neutral-400 mb-1.5 pl-2 border-l-2 border-[#c5a880]">{cat.title}</p>
+                                  <div className="pl-3 flex flex-col gap-1">
+                                    {cat.items.map((item) => (
+                                      <button
+                                        key={item.label}
+                                        onClick={() => {
+                                          if (onSelectFilter) {
+                                            onSelectFilter(undefined, item.searchQuery, undefined);
+                                          }
+                                          setIsMobileMenuOpen(false);
+                                        }}
+                                        className="w-full text-left py-1.5 text-[11px] font-medium text-neutral-600 hover:text-black uppercase cursor-pointer"
+                                      >
+                                        {item.label}
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
                               ))}
                             </div>
                           )}
