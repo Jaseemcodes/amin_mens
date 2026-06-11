@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Search, User, ShoppingCart, Menu, X, Phone } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { TEXT_CONSTANTS } from '../../constants/textConstants';
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -14,17 +14,17 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, x: 15 },
-  show: { 
-    opacity: 1, 
-    x: 0, 
-    transition: { 
-      type: "spring",
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: 'spring',
       stiffness: 100,
-      damping: 14
-    } 
-  }
+      damping: 14,
+    },
+  },
 };
 
 interface HeaderProps {

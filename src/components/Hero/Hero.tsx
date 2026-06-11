@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { TEXT_CONSTANTS } from '../../constants/textConstants';
+import heroBanner from '../../assets/images/narkins_stitched_hero_banner_1781154378525.png';
 
 export function Hero() {
   return (
@@ -8,7 +9,7 @@ export function Hero() {
       <div className="w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] min-h-[220px] sm:min-h-[300px] md:min-h-[480px] max-h-[700px] relative flex items-end justify-center pb-6 sm:pb-10 md:pb-20">
         {/* Banner image with no-referrer policy */}
         <img
-          src="/src/assets/images/narkins_stitched_hero_banner_1781154378525.png"
+          src={heroBanner}
           alt="FQ. Stitched Collection 2026"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center sm:object-cover absolute inset-0 select-none brightness-95 contrast-105 scale-102 hover:scale-100 transition-transform duration-1000 ease-out"
