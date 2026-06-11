@@ -1,0 +1,6 @@
+{
+  "name": "Inam Mens",
+  "description": "Premium customized menswear, stitched shalwar kameez and waistcoats catalog with instant cart, dynamic search, sorting filters, and FAQs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
