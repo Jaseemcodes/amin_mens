@@ -44,7 +44,7 @@ export default function App() {
   const [isSearchActive, setIsSearchActive] = useState(false);
 
   return (
-    <div className="min-h-screen bg-stone-50 text-neutral-900 selection:bg-neutral-900 selection:text-white relative flex flex-col font-sans">
+    <div className="min-h-screen overflow-x-hidden bg-stone-50 text-neutral-900 selection:bg-neutral-900 selection:text-white relative flex flex-col font-sans">
       
       {/* Dynamic Header Component */}
       <Header
